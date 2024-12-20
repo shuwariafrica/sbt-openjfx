@@ -13,7 +13,7 @@ env:
 
 jobs:
   test:
-    name: Execute Tests (Java ${{ matrix.java }})
+    name: Execute Tests (${{ matrix.os }}, Java ${{ matrix.java }})
     strategy:
       fail-fast: false
       matrix:
