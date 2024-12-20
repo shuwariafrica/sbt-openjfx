@@ -6,7 +6,7 @@ show_help() {
   echo
   echo "Tags a git release with the specified version."
   echo "The version must match the semantic versioning spec (e.g., 1.0.0, 1.0.0-alpha, 1.0.0+build123)."
-  echo "Ensures that the working directory is clean (no uncommitted changes or untracked files) before tagging."
+  echo "Ensures that the working directory is clean (no uncommitted changes) before tagging."
   echo
   echo "Options:"
   echo "  -h, --help    Show this help message and exit"
@@ -31,9 +31,9 @@ if ! [[ "$1" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-
   exit 1
 fi
 
-# Check if the git status is clean
-if ! git diff-index --quiet HEAD -- || ! git ls-files --others --exclude-standard --error-unmatch . >/dev/null 2>&1; then
-  echo "Error: There are uncommitted changes or untracked files in the working directory."
+# Check if the working tree is clean
+if [ -n "$(git status --porcelain)" ]; then
+  echo "Error: There are uncommitted changes in the working directory."
   exit 1
 fi
 
@@ -41,4 +41,9 @@ fi
 TAG_NAME="v$1"
 
 # Create an annotated and GPG-signed tag
-git tag --sign --annotate $TAG_NAME -m "Release version $TAG_NAME"
+if git tag --sign --annotate "$TAG_NAME" -m "Release version $TAG_NAME"; then
+  echo "Success: Tagged release $TAG_NAME."
+else
+  echo "Error: Failed to create tag."
+  exit 1
+fi
