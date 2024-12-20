@@ -16,7 +16,7 @@ dependencies and configurations, making it easier to develop JavaFX applications
 To use the `sbt-openjfx` plugin, add the following to your `project/plugins.sbt` file:
 
 ```scala
-addSbtPlugin("africa.shuwari.sbt" % "sbt-openjfx" % "SNAPSHOT")
+addSbtPlugin("africa.shuwari.sbt" % "sbt-openjfx" % "[latest tag]")
 ```
 
 In your `build.sbt` file, you can configure the plugin settings as follows:
@@ -33,27 +33,8 @@ jfxModules := Set(JFXModule.Controls, JFXModule.Fxml)
 jfxVersion := "21.0.5"
 ```
 
-This configuration will set up your project to use the specified JavaFX modules and version, automatically handling the
-platform-specific dependencies.
-
-## Example
-
-Here is an example `build.sbt` file using the `sbt-openjfx` plugin:
-
-```scala
-name := "my-javafx-app"
-
-version := "0.1.0"
-
-enablePlugins(JFXPlugin)
-
-jfxModules := Set(JFXModule.Controls, JFXModule.Fxml)
-
-jfxVersion := "21.0.5"
-```
-
-This example sets up a JavaFX project with the `javafx-controls` and `javafx-fxml` modules, using version `21.0.5` of
-the JavaFX libraries.
+TThis example sets up a JavaFX project with the `javafx-controls` and `javafx-fxml` modules, using version `21.0.5` of
+the JavaFX libraries, automatically handling the platform-specific dependencies.
 
 ## Settings
 
