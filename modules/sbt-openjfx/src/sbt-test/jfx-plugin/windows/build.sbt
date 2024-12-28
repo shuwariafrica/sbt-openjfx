@@ -17,8 +17,8 @@ assertDependencies := {
 
   if (osName.contains("windows") && (osArch == "x86" || osArch == "amd64")) {
     val expectedDependencies = Set(
-      "org.openjfx" % "javafx-controls" % "23.0.1" classifier "win",
-      "org.openjfx" % "javafx-fxml" % "23.0.1" classifier "win"
+      ("org.openjfx" % "javafx-controls" % "23.0.1").classifier("win"),
+      ("org.openjfx" % "javafx-fxml" % "23.0.1").classifier("win")
     )
     val actualModules = libraryDependencies.value.toSet
 
