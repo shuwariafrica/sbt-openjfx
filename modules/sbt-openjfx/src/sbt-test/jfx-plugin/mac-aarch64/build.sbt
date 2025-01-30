@@ -17,8 +17,8 @@ assertDependencies := {
 
   if (osName.contains("mac") && osArch == "aarch64") {
     val expectedDependencies = Set(
-      "org.openjfx" % "javafx-controls" % "23.0.1" classifier "mac-aarch64",
-      "org.openjfx" % "javafx-fxml" % "23.0.1" classifier "mac-aarch64"
+      ("org.openjfx" % "javafx-controls" % "23.0.1").classifier("mac-aarch64"),
+      ("org.openjfx" % "javafx-fxml" % "23.0.1").classifier("mac-aarch64")
     )
     val actualModules = libraryDependencies.value.toSet
 
